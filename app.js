@@ -3,16 +3,16 @@ function buildMetadata(sample) {
 		var data = data.metadata;
 		console.log(data);
 	}
-
+	)
+}
 // Use D3 fetch to read the JSON file
 // The data from the JSON file is arbitrarily named importedData as the argument
 d3.json("samples.json").then((data) => {
-	var data = data.importedData;
 
 	// Dynamically add test Subject ID No. to the dropdown menus
 	var sample_ID = data.names;
 
-	names.forEach((name) => {
+	sample_ID.forEach((name) => {
 		d3.select("#selDataset").append("option").text(name);
 	})
 
@@ -53,7 +53,7 @@ d3.json("samples.json").then((data) => {
 
 		// Apply the group bar mode to the layout
 		var barlayout = {
-			title: `<b>Top 10 OTUs found in selected Test Subject ID No<b>`,
+			title: `<b>Top 10 OTUs found in <br> Selected Test Subject ID No.<b>`,
 			xaxis: { title: "Sample Value"},
 			yaxis: { title: "OTU ID"},
 			autosize: false,
@@ -108,19 +108,16 @@ d3.json("samples.json").then((data) => {
 				type: "indicator",
 				mode: "gauge+number",
 				gauge: {
-					axis: { range: [null, 9] },
+					axis: {range: [null, 10]},
+					bar: {color: "rgba(0,0,0,.7)"},
 					steps: [
-						{ range: [0, 1], color: 'rgb(248, 243, 236)' },
-						{ range: [1, 2], color: 'rgb(244, 241, 229)' },
-						{ range: [2, 3], color: 'rgb(233, 230, 202)' },
-						{ range: [3, 4], color: 'rgb(229, 231, 179)' },
-						{ range: [4, 5], color: 'rgb(213, 228, 157)' },
-						{ range: [5, 6], color: 'rgb(183, 204, 146)' },
-						{ range: [6, 7], color: 'rgb(140, 191, 136)' },
-						{ range: [7, 8], color: 'rgb(138, 187, 143)' },
-						{ range: [8, 9], color: 'rgb(133, 180, 138)' },
+					  { range: [2, 0], color: "#FB0D0D"},
+					  { range: [2, 4], color: "#F58518" },
+					  { range: [4, 6], color: "#FF9900" },
+					  { range: [6, 8], color: "#16FF32" },
+					  { range: [8, 10], color: "#109618" }
 					],
-				}
+				  }
 			}
 		];
 		
